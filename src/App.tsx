@@ -35,13 +35,6 @@ export default function QuizApp() {
    return (
       <div className="min-h-screen bg-gray-50 py-10 px-4 font-sans">
          <div className="max-w-2xl mx-auto">
-            <header className="mb-8 text-center">
-               <h1 className="text-3xl font-bold text-gray-800 tracking-tight">
-                  Тестування
-               </h1>
-               <p className="text-gray-500 mt-2">Перевірка знань з моделювання систем</p>
-            </header>
-
             {loading && (
                <div className="flex justify-center items-center h-40">
                   <div className="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-500"></div>

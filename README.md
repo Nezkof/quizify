@@ -21,8 +21,6 @@ Add the variable with the link to your JSON data:
 
 ```env
 VITE_JSON_BIN_URL=[https://api.jsonbin.io/v3/b/YOUR_BIN_ID/latest](https://api.jsonbin.io/v3/b/YOUR_BIN_ID/latest)
-# Optional: If your JSONBin is private, add your API key:
-# VITE_JSON_API_KEY=$2b$10$YOUR_API_KEY
 ```
 
 ### 3. Start the App
