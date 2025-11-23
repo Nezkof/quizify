@@ -1,73 +1,53 @@
-# React + TypeScript + Vite
+# Quizify
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple and web app for taking quizzes. Uses a remote JSON bin.
 
-Currently, two official plugins are available:
+**Stack:** React + Vite + TypeScript + Tailwind CSS.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## How to Run
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+### 1. Install Dependencies
+Open your terminal in the project folder and run:
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Environment Setup (.env)
+Create a file named `.env` in the root directory of the project (next to `package.json`).
+Add the variable with the link to your JSON data:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```env
+VITE_JSON_BIN_URL=[https://api.jsonbin.io/v3/b/YOUR_BIN_ID/latest](https://api.jsonbin.io/v3/b/YOUR_BIN_ID/latest)
+# Optional: If your JSONBin is private, add your API key:
+# VITE_JSON_API_KEY=$2b$10$YOUR_API_KEY
+```
 
-export default defineConfig([
-  globalIgnores(['dist']),
+### 3. Start the App
+Run the local development server:
+
+```bash
+npm run dev
+```
+Open the link shown in the terminal (usually `http://localhost:5173`) to view the app.
+
+---
+
+## 📂 JSON Data Structure
+The application expects the JSON data to follow this format:
+
+```json
+[
   {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+    "question": "What is the capital of France?",
+    "options": [
+      { "text": "A) Berlin", "is_correct": false },
+      { "text": "B) Madrid", "is_correct": false },
+      { "text": "C) Paris", "is_correct": true },
+      { "text": "D) Rome", "is_correct": false }
+    ]
+  }
+]
 ```
